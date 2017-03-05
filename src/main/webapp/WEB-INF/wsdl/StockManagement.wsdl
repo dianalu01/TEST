@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://diana.com/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="StockManagementService" targetNamespace="http://diana.com/">
+	<wsdl:types>
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:tns="http://diana.com/" elementFormDefault="unqualified"
+		targetNamespace="http://diana.com/" version="1.0">
+
+		<xs:complexType name="itemModel">
+			<xs:sequence>
+				<xs:element name="indexItem" type="xs:int" />
+				<xs:element name="idItem" type="xs:string" />
+				<xs:element name="nameItem" type="xs:string" />
+				<xs:element name="descriptionItem" type="xs:string" />
+				<xs:element name="amountItem" type="xs:integer" />
+			</xs:sequence>
+		</xs:complexType>		
+
+		<xs:element name="getAllItemsRequest" type="tns:getAllItemsRequest" />
+		<xs:element name="getAllItemsResponse" type="tns:getAllItemsResponse" />
+		<xs:complexType name="getAllItemsRequest"/>
+		<xs:complexType name="getAllItemsResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+					type="tns:itemModel"/>
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="insertItemRequest" type="tns:insertItemRequest" />
+		<xs:element name="insertItemResponse" type="tns:insertItemResponse"/>
+		<xs:complexType name="insertItemRequest">
+			<xs:sequence>
+				<xs:element minOccurs="1" name="idItem" type="xs:string" />
+				<xs:element minOccurs="1" name="nameItem" type="xs:string" />
+				<xs:element minOccurs="1" name="descriptionItem" type="xs:string" />
+				<xs:element minOccurs="1" name="amountItem" type="xs:integer" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="insertItemResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+				
+		<xs:element name="updateItemRequest" type="tns:updateItemRequest" />
+		<xs:element name="updateItemResponse" type="tns:updateItemResponse"/>
+		<xs:complexType name="updateItemRequest">
+			<xs:sequence>
+				<xs:element minOccurs="1" name="idItem" type="xs:string" />
+				<xs:element minOccurs="1" name="nameItem" type="xs:string" />
+				<xs:element minOccurs="1" name="descriptionItem" type="xs:string" />
+				<xs:element minOccurs="1" name="amountItem" type="xs:integer" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="updateItemResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="deleteItemRequest" type="tns:deleteItemRequest" />
+		<xs:element name="deleteItemResponse" type="tns:deleteItemResponse" />
+		<xs:complexType name="deleteItemRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idItem" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="deleteItemResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>				
+		</xs:schema>		
+	</wsdl:types>
+
+
+	<wsdl:message name="getAllItemsRequest">
+		<wsdl:part element="tns:getAllItemsRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllItemsResponse">
+		<wsdl:part element="tns:getAllItemsResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>	
+	
+	<wsdl:message name="insertItemRequest">
+		<wsdl:part element="tns:insertItemRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="insertItemResponse">
+		<wsdl:part element="tns:insertItemResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="updateItemRequest">
+		<wsdl:part element="tns:updateItemRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateItemResponse">
+		<wsdl:part element="tns:updateItemResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>	
+	
+	<wsdl:message name="deleteItemRequest">
+		<wsdl:part element="tns:deleteItemRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteItemResponse">
+		<wsdl:part element="tns:deleteItemResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="StockManagementPortType">
+		<wsdl:operation name="getAllItems">
+			<wsdl:input message="tns:getAllItemsRequest" name="getAllItemsRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getAllItemsResponse" name="getAllItemsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="insertItem">
+			<wsdl:input message="tns:insertItemRequest" name="insertItemRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:insertItemResponse" name="insertItemResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateItem">
+			<wsdl:input message="tns:updateItemRequest" name="updateItemRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:updateItemResponse" name="updateItemResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteItem">
+			<wsdl:input message="tns:deleteItemRequest" name="deleteItemRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:deleteItemResponse" name="deleteItemResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="StockManagementServiceSoapBinding"
+		type="tns:StockManagementPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getAllItems">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAllItemsRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllItemsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="insertItem">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="insertItemRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="insertItemResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateItem">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="updateItemRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateItemResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteItem">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteItemRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteItemResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	        
+	</wsdl:binding>
+
+	<wsdl:service name="StockManagementService">
+		<wsdl:port binding="tns:StockManagementServiceSoapBinding"
+			name="StockManagementPort">
+			<soap:address
+				location="http://localhost:8081/stockManagement/services/stockManagementService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
