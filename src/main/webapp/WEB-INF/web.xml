@@ -16,6 +16,10 @@
 		<servlet-name>cxf</servlet-name>
 		<url-pattern>/services/*</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	    <servlet-name>Ins</servlet-name>
+	    <jsp-file>/insertItem.jsp</jsp-file>
+	</servlet>
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
